@@ -12,4 +12,6 @@ public interface CustomerRepository extends MongoRepository<Customer, String> {
 
 	List<Customer> findByPriorityGreaterThan(int priority);
 
+	Customer findByName(String name);
+
 }
