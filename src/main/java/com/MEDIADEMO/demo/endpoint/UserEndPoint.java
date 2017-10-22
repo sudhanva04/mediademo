@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.MEDIADEMO.demo.domain.Customer;
+import com.MEDIADEMO.demo.domain.HelloDomain;
 import com.MEDIADEMO.demo.service.CustomerService;
 
 @Path("/user")
@@ -32,13 +33,22 @@ public class UserEndPoint {
 
 	@GET
 	@Path("/all")
-	@Produces(value = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Consumes(value = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces(MediaType.APPLICATION_JSON )
+	@Consumes(MediaType.APPLICATION_JSON)
 	public List<Customer> getAllCustomersBasedOnUserType(@QueryParam("usertype") String userType) {
 		System.err.println("get all");
 		return customerService.getAllCustomersBasedOnUserType(userType);
 	}
 
+	
+	@GET
+	@Path("/herokutry")
+	public Customer getDemoCustomer() {
+		Customer cust = new Customer();
+		cust.setName("tryman");
+		return cust;
+	}
+	
 	@GET
 	public Customer getIndivisualCustomer(@QueryParam("id") String id) {
 		return customerService.getIndivisualCustomer(id);
